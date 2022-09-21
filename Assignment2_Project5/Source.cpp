@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 
+
 using namespace std;
 
 struct STUDENT_DATA
@@ -12,16 +13,24 @@ struct STUDENT_DATA
 	string last_name;
 };
 
+#define PRE_RELEASE
+
 int main() {
+#ifdef PRE_RELEASE
+	cout << "the application is running pre-release source code" << endl;
+	ifstream inputFile("StudentData_Emails.txt");	//reading data from the file
+
+#else 
+	cout << "the application is running standard source code" << endl; 
+	ifstream inputFile("StudentData.txt");	//reading data from the file
+#endif
 
 	vector<STUDENT_DATA> vect;
 	string line;
-
-	//reading data from the file, parse data, and store into vector space
-	ifstream inputFile("StudentData.txt");
 	if (inputFile.is_open()) {
 		while (getline(inputFile, line))
 		{
+			//parse data read from file, and store into vector space
 			STUDENT_DATA studentObject;
 			std::istringstream ss(line);
 			getline(ss, studentObject.last_name, ',');
