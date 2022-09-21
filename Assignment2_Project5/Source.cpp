@@ -24,11 +24,17 @@ int main() {
 		{
 			STUDENT_DATA studentObject;
 			std::istringstream ss(line);
-			getline(ss, studentObject.first_name, ',');
-			getline(ss, studentObject.last_name, '\n');
+			getline(ss, studentObject.last_name, ',');
+			getline(ss, studentObject.first_name, '\n');
 			vect.push_back(studentObject);
 		}
 
-		
+#ifdef _DEBUG		//predefine compiler directive. only run if the program is running in debug mode
+		for (size_t i = 0; i < vect.size(); i++)
+		{
+			cout << vect[i].last_name << ", " << vect[i].first_name << endl;
+		}
+#endif 
+
 	}
 }
